@@ -10,6 +10,33 @@ const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
+
+  {Auth.loggedIn() ? (
+    <>
+        <span>Hey there, {Auth.getProfile().data.username}!</span>
+        <Nav.Link className="btn btn-lg btn-info m-2" to="/trip">
+            Trip
+        </Nav.Link>
+        <Nav.Link className="btn btn-lg btn-info m-2" to="/state">
+            State
+        </Nav.Link>
+        <Nav.Link className="btn btn-lg btn-info m-2" to="/home">
+            Navigation
+        </Nav.Link>
+        <button className="btn btn-lg btn-info m-2" onClick={Auth.logout}>
+            Logout
+        </button>
+    </>
+) : (
+    <>
+        <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+    </>
+)}
+
+
+
+
+
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
